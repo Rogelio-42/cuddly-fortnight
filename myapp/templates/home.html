@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	{% if title %}
+	<title>{{title}}</title>
+	{% else %}
+	<title> Home </title>
+	{% endif %}
+	</head>
+	<body>
+		<div>
+		<h1> Welcome {{name}}, here are top destinations!</h1>
+		<a href='www.google.com'> Goooogle </a>
+		</div>
+		{% if top_cities %}
+		<ul>
+			{% for city in top_cities %}
+			<li> {{city}} </li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		{% messages=get_flashed_messages() %}
+		{% if messages %}
+		<ul>
+			{% for m in messages %}
+			<li> {{ m }} </li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+	</body>
+</html>
