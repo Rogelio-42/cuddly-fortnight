@@ -15,7 +15,9 @@
 		{% if top_cities %}
 		<ul>
 			{% for city in top_cities %}
+			{% if city %}
 			<li> {{city}} </li>
+			{% endif %}
 			{% endfor %}
 		</ul>
 		{% endif %}
@@ -23,7 +25,7 @@
 	{% block content %}
 	<h1>Enter New City </h1>
 	
-	<form method=["GET", "POST"] novalidate>
+	<form method="POST" novalidate>
 		{{ form.hidden_tag() }}
 
 		<p> {{form.city_name.label}} <br>

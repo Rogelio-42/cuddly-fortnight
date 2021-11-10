@@ -37,7 +37,7 @@ class City(db.Model):
     rank = db.Column(db.Integer)
     visited = db.Column(db.Boolean, default=False, nullable=False)
     def __repr__(self):
-        return self.name
+        return f'{self.name}'
 
 
 @login.user_loader

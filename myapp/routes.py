@@ -44,7 +44,7 @@ def getMember(name):
 #
 #    return render_template('hello.html', name=name, people=people, posts=posts)
 
-@myapp_obj.route("/", methods=['GET', 'POST'])
+@myapp_obj.route("/", methods=["GET", "POST"])
 def citys():
 	form = TopCities()
 	title = "Top Cities"
@@ -56,5 +56,4 @@ def citys():
 		db.session.add(city)
 		db.session.commit()
 		top_cities = db.session.query(City).order_by(City.rank.desc())
-		return redirect('/')
 	return render_template("home.html", form=form, title=title, name=name, top_cities=top_cities)
