@@ -32,8 +32,13 @@ class Post(db.Model):
         return f'<Post {self.id}: {self.body}>'
 
 class City(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True, index=True)
-    rank = db.Column(db.Integer, primary_key=True)
+    rank = db.Column(db.Integer)
+    visited = db.Column(db.Boolean, default=False, nullable=False)
+    def __repr__(self):
+        return self.name
+
 
 @login.user_loader
 def load_user(id):

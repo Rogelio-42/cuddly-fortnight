@@ -34,20 +34,27 @@ def login():
 def getMember(name):
     return 'Hi ' + name
 
-@myapp_obj.route("/")
-def hello():
-    name = 'Thomas'
-    people = {'Carlos' : 54}
-    title = 'My HommePage'
-    posts = [{'author': 'john', 'body': 'Beautiful day in Portland!'},\
-            {'author': 'Susan', 'body': 'Today was a good day!'}]
+#@myapp_obj.route("/")
+#def hello():
+#    name = 'Thomas'
+#    people = {'Carlos' : 54}
+#    title = 'My HommePage'
+#    posts = [{'author': 'john', 'body': 'Beautiful day in Portland!'},\
+#            {'author': 'Susan', 'body': 'Today was a good day!'}]
+#
+#    return render_template('hello.html', name=name, people=people, posts=posts)
 
-    return render_template('hello.html', name=name, people=people, posts=posts)
-
-@myapp_obj.route("/")
-def cityss():
-	form = TopCities
-	title = Top Cities
+@myapp_obj.route("/", methods=['GET', 'POST'])
+def citys():
+	form = TopCities()
+	title = "Top Cities"
 	name = "Rogelio"
-	top_cities= city 
+	top_cities = []
+	if form.is_submitted():
+		db.create_all()
+		city = City(name=form.city_name.data, rank=form.city_rank.data, visited = form.is_visited.data)
+		db.session.add(city)
+		db.session.commit()
+		top_cities = db.session.query(City).order_by(City.rank.desc())
+		return redirect('/')
 	return render_template("home.html", form=form, title=title, name=name, top_cities=top_cities)
